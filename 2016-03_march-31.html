@@ -6,19 +6,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>March 31st 2016 Meeting Notes</title>
+<title>March 31, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<p>March 31st 2016 Meeting Notes</p>
-<a href="#attendees"><h2 id="attendees">Attendees</h2></a><p>Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Adam Klein (AK), Mark Miller (MM), Brian Terlson (BT), Domenic Denicola (DD), Brad Nelson (BNN), JF Bastien (JFB), Joe Lencioni, Sebastian Markbage, Jeff Morrison (JM), Kevin Smith (KS), Lars Hansen (LHN), Saam Barati, Keith Miller, Michael Saboff, Eric Ferraiuolo (EF),Eric Faust (FST), Chip Morningstar (CM), Dean Tribble (DT), Shu-yu Guo (SG), Tim Disney (TD), Waldemar Horwat (WH), Bert Belder, Peter Jensen, Daniel Ehrenberg (DE), Caridy Patiño, Diego Ferreiro Val, Jean Fraucois Paradis, Shelby Hubick, Leo Balter (LB), Misko Hevery, Allen Wirfs-Brock (AWB), Kevin Gibbons (KG), Steven Lumis (SL), Zibi Braniecki (ZB)</p>
+<a href="#march-31-2016-meeting-notes"><h1 id="march-31-2016-meeting-notes">March 31, 2016 Meeting Notes</h1></a><p>Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Adam Klein (AK), Mark Miller (MM), Brian Terlson (BT), Domenic Denicola (DD), Brad Nelson (BNN), JF Bastien (JFB), Joe Lencioni (JLI), Sebastian Markbage (SM), Jeff Morrison (JM), Kevin Smith (KS), Lars Hansen (LHN), Saam Barati (SBI), Keith Miller (KMR), Michael Saboff (MS), Eric Ferraiuolo (EF), Eric Faust (FST), Chip Morningstar (CM), Dean Tribble (DT), Shu-yu Guo (SYG), Tim Disney (TD), Waldemar Horwat (WH), Bert Belder (BBR), Peter Jensen (PJ), Daniel Ehrenberg (DE), Caridy Patiño (CP), Diego Ferreiro Val (DFV), Jean Fraucois Paradis (JFP), Shelby Hubick (SHK), Leo Balter (LBR), Misko Hevery (MHY), Allen Wirfs-Brock (AWB), Kevin Gibbons (KG), Steven Loomis (SLS), Zibi Braniecki (ZB)</p>
 <a href="#final-draft-standards-approval"><h2 id="final-draft-standards-approval">Final Draft Standards Approval</h2></a><p>ECMA-262: Approved with 2 abstains</p>
 <p>ECMA-402: Approved with 1 abstain</p>
 <p>ECMAScript Specification Suite (pointer spec for ISO): Approved</p>
 <p>Note that everyone has until May 1st to review the document for patent issues.</p>
 <a href="#tail-calls"><h2 id="tail-calls">Tail Calls</h2></a><p>AWB: objected that the current standard language is sufficient</p>
-<p>SG: <em>objected to AWB's objection and clarified the issue</em></p>
+<p>SYG: <em>objected to AWB's objection and clarified the issue</em></p>
 <p>BT: The sec says the implementation must release any transient resource associated with the current context</p>
 <p>AWB: if the current function is a cross realm call. so it's return has extra state to handle the return. ... people don't follow so he goes to draw a picture...</p>
-<p>SG: do you think it is spec compliant if two mutually recursive functions doing tail calls across a realm boundary caused the stack to continue to grow with each call?</p>
+<p>SYG: do you think it is spec compliant if two mutually recursive functions doing tail calls across a realm boundary caused the stack to continue to grow with each call?</p>
 <p>AWB: No</p>
 <p>MM: articulated the perspective that the <em>calls</em> can be tail calls, but the membrane in the middle may not be able to then make a tail call. Therefore the membrane is accumulating the intermediate state.</p>
 <p>AWB: doesn't mind saying it's implementation dependent</p>
@@ -67,9 +66,9 @@
 <p>MM: JS is unique in the span of programmers it tries to accommodate. In the absence of this debugger issue, many programmers will not know that a call is a tail call. In the absence of TCO, this would be fine. But having the default behavior of TCO on is counter to developer intuition in terms of when you'd get the stack</p>
 <p>(fill in DE's point)</p>
 <p>MS: To me, it seems more intuitive to opt out of tail calls than to opt in.</p>
-<p>SG: I agree with Mark's intuition that this is not what programmers expect. TCO is not a time optimization. Because of various parts of implementation complexity, at best it could be a time savings, but it is not an</p>
+<p>SYG: I agree with Mark's intuition that this is not what programmers expect. TCO is not a time optimization. Because of various parts of implementation complexity, at best it could be a time savings, but it is not an</p>
 <p>MS: TCO lets us omit popping the stack and running epilogue code. And if I use less stack space, we touch less memory and are more cache friendly</p>
-<p>SG: I think most cases of accidental opt-in are not loops, and are simply function calls.</p>
+<p>SYG: I think most cases of accidental opt-in are not loops, and are simply function calls.</p>
 <p>MS: Performance benefits of tail calls: If you reuse a frame, you'll likely do less writes to a frame. Likely some things will already be valid there, and you're writing to the same cache lines.</p>
 <p>WH: That is speculative. If your new frame is bigger than the fhan the caller frame, it could be slower.</p>
 <p>BB: The spec doesn't require stack space. People right now don't expect to get tail calls or do tail recursion. I'd expect that, for those particular cases where tail calls are present, it would be better to make it an explicit opt-in, so we would be able to tell users when it won't work. For the cross-realm case, it would be useful to throw or warn, rather than silently using stack space.</p>
@@ -91,7 +90,7 @@
 <p>AWB: We certainly talked about debugging information in working on ES6, so that's been taking into account. So if we, right now, can address the issue without going back on that, that could be better</p>
 <p>EF: FWIW when I discussed this with Dave, he found the devtools argument compelling, and found that we basically missed a stakeholder.</p>
 <p>AWB: So is the first, performance issue important enough?</p>
-<p>SG: I see these (perf, debugging) as the same issue, in that an explicit opt-in solves more issues than an explicit opt-out.</p>
+<p>SYG: I see these (perf, debugging) as the same issue, in that an explicit opt-in solves more issues than an explicit opt-out.</p>
 <p>MS: The issue about what Mark said earlier, in an eloquent way, about the quality of JavaScript programmers, is relevant because it's a compiler trick to give better performance</p>
 <p>AWB: proper tail calls proponents would say that it's not an optimization, it's about linear space</p>
 <p>MS: Second, it's a way to enable more programming styles</p>
@@ -246,7 +245,7 @@
 <p>DT: Let's cut this off and make it an issue.</p>
 <p>[discussion of &quot;minimizing non-determinism&quot; slide]</p>
 <p>DT: It's important that makeWeakRef is replaceable with something that has reproducible, deterministic behavior, e.g. for testing</p>
-<p>SG: How does the &quot;Unintended retention mitigated&quot; slide prevent bad programmer behavior?</p>
+<p>SYG: How does the &quot;Unintended retention mitigated&quot; slide prevent bad programmer behavior?</p>
 <p>DT: It throws an error</p>
 <p>AWB: How can that be checked?</p>
 <p>MM: If your holding's value is the target, then an error is thrown</p>
@@ -257,7 +256,7 @@
 <p>?: In addition to the general lack of guarantee, we allow closures to close over more of the environment than is explicitly mentioned inside them.</p>
 <p>KS: I'm not entirely sure that separating the holdings into a separate argument, given JavaScript programmer practice, is likely to prevent programmers from running into this bug.</p>
 <p>DT: You could have a lint rule, though: holdings provides a pattern for doing the right thing.</p>
-<p>SG: What if you 'yield' after calling weakRef.get()?</p>
+<p>SYG: What if you 'yield' after calling weakRef.get()?</p>
 <p>MM: That's up to the consumer of the generator: you have to assume that state may change between yield points.</p>
 <p>WH: Is the implementation allowed to clear the weak reference while the object it references is still strongly reachable?</p>
 <p>DT: No, the weakRef must not be cleared unless the target object is condemned.</p>
@@ -309,7 +308,7 @@
 <p>EF: I think that the stage process is exactly set up to handle something like this. We could create experimental implementations and ask people to write code against them.</p>
 <p>DH: The problem is that this can't be polyfilled, so there's no good way to get developers to use this.</p>
 <p>DE: Node has a weak reference API that can provide some of the same functionality which might provide code to use for this purpose.</p>
-<p>SG: What if you had an implementation that changed the weak ref to null at some point during the execution?</p>
+<p>SYG: What if you had an implementation that changed the weak ref to null at some point during the execution?</p>
 <p>DT: You couldn't do that, since the object might still be reachable.</p>
 <p>[KM/DT discuss various testing problems]</p>
 <p>DT: Are we ready for stage 1? and then what is the gap to stage 2?</p>
@@ -332,7 +331,7 @@
 <p>AK: One option would be for the champions to prototype this in one of the open source engines</p>
 <p>DT: Would one of the implementers to volunteer to implement this?</p>
 <p>DE: You could use Node, which already has a weak reference implementation.</p>
-<p>SG: I would volunteer to help one of the champions prototype this in our engine</p>
+<p>SYG: I would volunteer to help one of the champions prototype this in our engine</p>
 <p>AWB: This needs debate, and it needs implementation experience.</p>
 <p>EF: The core of the problem is that the worries about the proposal are exactly those things that the proposal explicitly does not address.</p>
 <a href="#conclusionresolution-weak-references"><h4 id="conclusionresolution-weak-references">Conclusion/resolution</h4></a><p>Stage 1</p>

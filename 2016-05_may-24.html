@@ -6,10 +6,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>May 24th 2016 Meeting Notes</title>
+<title>May 24, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<p>May 24th 2016 Meeting Notes</p>
-<a href="#attendees"><h2 id="attendees">Attendees</h2></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LB), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Domenic Denicola (DD), Jeff Morrison (JM), Louis Lafreniere (LL, via Hangouts, part-time), Dean Tribble (DT, via Hangouts, part-time)</p>
+<a href="#may-24-2016-meeting-notes"><h1 id="may-24-2016-meeting-notes">May 24, 2016 Meeting Notes</h1></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SYG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LBR), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Domenic Denicola (DD), Jeff Morrison (JM), Louis Lafreniere (LL, via Hangouts, part-time), Dean Tribble (DT, via Hangouts, part-time)</p>
 <p>In the morning we've had 22 Face-to-face participants but Hangouts is not switched on yet.</p>
 <p>After 11:00 the Hangouts was on:</p>
 <ul>
@@ -146,7 +145,7 @@ If you can state the way you're not expecting to implement the feature faithfull
 <p>FST: But we can't faithfully implement what we've got.</p>
 <p>BT: Our x64 implementation can't grow our stack frames due to the Windows ABI. Performance is not good, and syntax help in that case.</p>
 <p>LL: The main thing on perf is the only case it could be a perf win is tail recursive case, in all others we have to check a call is a jump to a function with a jump to callback(?) need a test at the bottom for parameter count. In terms of stack space, if calling out with same number or less then fine, but more will cause break, no way to change return address of caller , breaks unwinding mechanism of window. Rely heavily for excp handling , stack locks(?), telemetry etc.</p>
-<p>SG: is it the windows stack unwinder? The stack that is outside the scope of JS?</p>
+<p>SYG: is it the windows stack unwinder? The stack that is outside the scope of JS?</p>
 <p>LL: Yes, windows stack walker, we follow the ABI for telemetry, the windows stack walker. There's also downsides in code size, because we don't know # parameters, we have to handle this every time there's a tail call.</p>
 <p>YK: Is this the same thing as saying we're requiring all JS impls to have their own stack unwinding mechanism? If the windows team says they're willing to change their implementation, then it'll just be future implementations.</p>
 <p>DE: I think it's relatively hard to change an ABI that is used by many compiled programs. Are there are more implementation issues that may be interesting to us?</p>
@@ -156,9 +155,9 @@ If you can state the way you're not expecting to implement the feature faithfull
 <p>DE: Spec guranrtees asymptotic stack size, so provided the bounds of the growth are better than linear, then it's reasonable.</p>
 <p>MM: if there is no asymptot that is approached, it is not compliant.</p>
 <p>MS: Log growth is not spec compliant, but not useful for the sorts of programs this is intended.</p>
-<p>SG: for the spec, there is no such thing as half compliance.</p>
+<p>SYG: for the spec, there is no such thing as half compliance.</p>
 <p>DH: has a programmer, are you going to use these features that sometimes work, or will you fall back to a loop?</p>
-<p>SG: It is useless to talk about anything with space, the spec assumes infinite stack space, is this a well defined spec question?</p>
+<p>SYG: It is useless to talk about anything with space, the spec assumes infinite stack space, is this a well defined spec question?</p>
 <p>DH: Perfect is the enemy of the good. Literature on this requires a complete cost model with a lots of complex formal semantics detail. We don't want this in ecma262, too complex. We can specify this morally. We don't have to be mathematical here.</p>
 <p>MS: if the spec is written in such a way that recursion can continue indefinitely and Chakra cannot do it, then it is not compliant.</p>
 <p>DH: I agree, there has to be human judgement to do this.</p>
@@ -166,7 +165,7 @@ If you can state the way you're not expecting to implement the feature faithfull
 <p>ARB: Those space gurantees don't apply to the general case.</p>
 <p>YK: Once  I notice I have unbounded input, I do a data structure version of the same problem. In all cases, I do know the cost model. I do not understand the cost model of PTC.</p>
 <p>DE: We heard last tinme that tail calls are hard to implement from SG and Eric, this would be good to recap. (Cross-realm)
-SG: we reached consensus on this</p>
+SYG: we reached consensus on this</p>
 <p>MS: A cross realm growth for the stack is fine.</p>
 <p>YK: I assume it is not the case you can observe something from the same realm.</p>
 <p>MM: By construction you can.</p>
@@ -308,7 +307,7 @@ DE: This was only my misunderstanding.</p>
 <p>Multiple: Not true</p>
 <p>YK: Are we adding more cases to when frames are elided. It is not speculative that a developer does not want more elided frames in their stack traces. Some companies may begin to avoid using libraries with STC because they need the telemetry from calls.</p>
 <p>BT: F# has tail call. You can deploy F# to windows store. There is an app insights tool that does telemetry, and that was impacted by F# apps. The solution was to say that you don't get stack traces for these tail call using apps.</p>
-<p>SG: Do people who put apps on the app store always opt for the telemetry? Or is this thing just that exists?</p>
+<p>SYG: Do people who put apps on the app store always opt for the telemetry? Or is this thing just that exists?</p>
 <p>BT: We have sufficient evidence that telemetry is impacted by eliding frames.</p>
 <p>MM: VMs have a very minimalistic instruction set, explicit loop construct which is the only difference from a normal set. The designers wanted a very explicit contract with the user when they want to see stack frames. Calls should always generate frames, loops not, they wanted to be explicit about this. User experience through the debugger is an important part of language design.</p>
 <p>MS: there is tail call in C++. We get telemetry with frames elided, we deal with these.</p>
@@ -388,7 +387,7 @@ DE: This was only my misunderstanding.</p>
 <p>DE: for debugging and telemetry, the intent to do a loop or continuation means that we don't have to implement shadow chicken. It doesn't affect existing code that didn't intend to use PTC.</p>
 <p>MS: The point about STC, the user wants it but I can't do it, do I throw an exception?</p>
 <p>FST: If someone wrote a module loader with each module in its own realm. This would impose problems.</p>
-<p>SG: what things do not work cross realms?</p>
+<p>SYG: what things do not work cross realms?</p>
 <p>MM: For identity of continuity, I would like cross realms to be as little surprising as possible.</p>
 <p>FST:  cross-realm tailcalls violates the least surprise for me.</p>
 <p>MM: There are sufficiently strong engineering reasons for inter-realm membranes, certainly since one browser is using them. I want all surprises resulting from it needs to be specced carefully.</p>

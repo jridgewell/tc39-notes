@@ -10,9 +10,11 @@
 <body class="markdown-body">
 <a href="#september-19-2012-meeting-notes"><h1 id="september-19-2012-meeting-notes">September 19, 2012 Meeting Notes</h1></a><p>John Neumann (JN), Mark Miller (MM), Norbert Lindenberg (NL), Nebojsa Ciric (NC), Allen Wirfs-Brock (AWB), Istvan Sebastian (IS), Luke Hoban (LH), Paul Leathers (PB), Sam Tobin-Hochstadt (STH), Andreas Rossberg (ARB), Brendan Eich (BE), Erik Arvidsson (EA), Dave Herman (DH), Yehuda Katz (YK), Rick Waldron (RW), Eric Ferraiuolo (EF), Matt Sweeney (MS), Doug Crockford (DC), Alex Russell (AR), Rafael Weinstein (RWS), Waldemar Horwat (WH), Tom Van Cutsem (TVC, phone)</p>
 <p>Recap of Sept 18th notes.</p>
-<a href="#proxy"><h1 id="proxy">Proxy</h1></a><p>(Presented by Tom Van Cutsem, Free University of Brussels)</p>
+<a href="#proxy"><h2 id="proxy">Proxy</h2></a><p>(Tom Van Cutsem, Free University of Brussels)</p>
 <a href="#enumerate-traps-return-types"><h2 id="enumerate-traps-return-types">Enumerate Traps Return Types</h2></a><p>TVC: change return type of enumerate() trap from array-of-string to iterator. Requires waiving the check for duplicate property names</p>
-<a href="#conclusionresolution-enumerate-traps-return-types"><h4 id="conclusionresolution-enumerate-traps-return-types">Conclusion/Resolution</h4></a><p>Drop the duplicate property check. enumerate() trap returns iterator.</p>
+<a href="#conclusionresolution-enumerate-traps-return-types"><h4 id="conclusionresolution-enumerate-traps-return-types">Conclusion/Resolution</h4></a><ul>
+<li>Drop the duplicate property check. enumerate() trap returns iterator.</li>
+</ul>
 <a href="#revokable-proxies"><h2 id="revokable-proxies">Revokable Proxies</h2></a><p>TVC: The Problem</p>
 <p>In a nutshell: with direct proxies, one can no longer write a caretaker proxy that nulls out a pointer to its target once revoked. This means that the target can no longer be garbage-collected separately from its proxy.</p>
 <p>As pointed out by David Bruant, caretakers are often useful precisely for memory management, where one uses revocation of the caretaker to release the underlying resources, as described here.</p>
@@ -138,7 +140,7 @@ TVC: we need to specify that the proxy calls the original/intrinsic WeakSet.prot
 <p>RW: Use cases in node programs where I'm using WeakMap made it apparent that it <em>is</em> possible to leak via redefinition.</p>
 <a href="#conclusionresolution-weakset"><h4 id="conclusionresolution-weakset">Conclusion/Resolution</h4></a><p>Needs to be designed, as part of the whitelist feature's needs.</p>
 <p>SpiderMonkey tracking bug: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=792439">https://bugzilla.mozilla.org/show_bug.cgi?id=792439</a></p>
-<a href="#syntactic-support-for-private-names"><h1 id="syntactic-support-for-private-names">Syntactic Support for Private Names</h1></a><p>(Presented by Allen Wirfs-Brock, Mozilla)</p>
+<a href="#syntactic-support-for-private-names"><h2 id="syntactic-support-for-private-names">Syntactic Support for Private Names</h2></a><p>(Allen Wirfs-Brock, Mozilla)</p>
 <p>Slides: <a href="https://members.ecma-international.org/get.php?group=TC39&amp;file=2012_sub_tc39-2012-066.pdf">https://members.ecma-international.org/get.php?group=TC39&amp;file=2012_sub_tc39-2012-066.pdf</a></p>
 <a href="#private-names--names"><h2 id="private-names--names">Private Names &amp; @Names</h2></a><a href="#uniqueprivate-names"><h3 id="uniqueprivate-names">Unique/Private Names</h3></a><ul>
 <li><p>Unique and private names (aka symbols) are ES6's solution for objects that need to expose props that have limited or controlled acccessibility.</p></li>
@@ -312,16 +314,16 @@ o.m(); <span class="hljs-comment">// 42</span>
 <ul>
 <li>&quot;Protected&quot;</li>
 </ul>
-<a href="#renaming-name-to-symbol"><h1 id="renaming-name-to-symbol">Renaming Name to Symbol</h1></a><p>(Presented by Dave Herman, Mozilla)</p>
+<a href="#renaming-name-to-symbol"><h2 id="renaming-name-to-symbol">Renaming Name to Symbol</h2></a><p>(Dave Herman, Mozilla)</p>
 <p>YK: A little nervous that not identical to Lisp</p>
 <p>DH: Gave blessing ;)  the only diff is that you can't go from string -&gt; symbol, whereas in lisp you can</p>
 <p>YK: ok with that.</p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><ul>
+<a href="#conclusionresolution-renaming-name-to-symbol"><h4 id="conclusionresolution-renaming-name-to-symbol">Conclusion/Resolution</h4></a><ul>
 <li>we agree that names are now called symbols (Name =&gt; Symbol)</li>
 <li>new alternatives for syntax to bind a &quot;Unique Symbol&quot; will be a keyword, one of: public, unique, or symbol
 ie. <code>public @foo;</code> vs <code>symbol @foo;</code> vs <code>unique @foo;</code></li>
 </ul>
-<a href="#early-errors-that-possibly-should-not-be"><h1 id="early-errors-that-possibly-should-not-be">Early Errors That Possibly Should Not Be</h1></a><p>(Presented by Luke Hoban, Microsoft)</p>
+<a href="#early-errors-that-possibly-should-not-be"><h2 id="early-errors-that-possibly-should-not-be">Early Errors That Possibly Should Not Be</h2></a><p>(Luke Hoban, Microsoft)</p>
 <p>LH: Concerns about detecting assignment to constants. Want to just parse, not build name environments, parse trees, etc.</p>
 <p>WH: What about detecting a continue to a nonexistent label? That requires name environments.</p>
 <p>LH: It's rare enough that it doesn't matter.</p>
@@ -346,10 +348,10 @@ Consensus: No.</p>
 <p>...Will allay performance issues discovered through Chakra and v8 prototyping.</p>
 <p>Discussion of label analysis</p>
 <p>Strict mode implementation</p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><ul>
+<a href="#conclusionresolution-early-errors-that-possibly-should-not-be"><h4 id="conclusionresolution-early-errors-that-possibly-should-not-be">Conclusion/Resolution</h4></a><ul>
 <li>es-discuss will get a list of all early errors that should not be</li>
 </ul>
-<a href="#performance-costs-of-temporal-dead-zone"><h1 id="performance-costs-of-temporal-dead-zone">Performance Costs of Temporal Dead Zone</h1></a><p>(Presented by Luke Hoban, Microsoft)</p>
+<a href="#performance-costs-of-temporal-dead-zone"><h2 id="performance-costs-of-temporal-dead-zone">Performance Costs of Temporal Dead Zone</h2></a><p>(Luke Hoban, Microsoft)</p>
 <p><a href="https://mail.mozilla.org/pipermail/es-discuss/2012-September/024993.html">https://mail.mozilla.org/pipermail/es-discuss/2012-September/024993.html</a></p>
 <p>LH: (introduces discussion)</p>
 <p>ARB: Have you tested with let and no temporal dead zone</p>
@@ -363,11 +365,11 @@ Consensus: No.</p>
 <p>WH: [as previously mentioned by Brendan], having a lot more scopes to close over (i.e. creating a new one for each loop iteration, etc.) is likely to be the main performance cost of let. What if let is slower merely due to having many more scopes?</p>
 <p>BE: (history of let in SpiderMonkey...) No outcry that performance is an issue</p>
 <p>MM: (countering the &quot;not common enough&quot; argument) Presented personal experiences where dead zones were essential in detecting problems.</p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><ul>
+<a href="#conclusionresolution-performance-costs-of-temporal-dead-zone"><h4 id="conclusionresolution-performance-costs-of-temporal-dead-zone">Conclusion/Resolution</h4></a><ul>
 <li>No change to temporal dead zone (yet)</li>
 <li>Get more data, report back</li>
 </ul>
-<a href="#global-scope-revisit"><h1 id="global-scope-revisit">Global Scope Revisit</h1></a><p>YK: Still not in agreement with discussion yesterday, but not blocking the</p>
+<a href="#global-scope-revisit"><h2 id="global-scope-revisit">Global Scope Revisit</h2></a><p>YK: Still not in agreement with discussion yesterday, but not blocking the</p>
 <p>BE: Recap the problem that revealed the issue.</p>
 <p>LH: Can we talk about let/var at the top level?</p>
 <p>Current proposal... let would shadow var</p>
@@ -463,7 +465,7 @@ I can't figure out what the semantics you're describing is</p>
 <p>There are two scopes:
 Global Object and Global Lexical Scope... when a <code>let</code> binding occurs, there are two things created, one on the Global Object and Global Lexical Scope.</p>
 <p>[people generally felt it was easier to comprehend the data living in the scope contour]</p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><p>Agreed on the AWB/MM/WH alternative model
+<a href="#conclusionresolution-global-scope-revisit"><h4 id="conclusionresolution-global-scope-revisit">Conclusion/Resolution</h4></a><p>Agreed on the AWB/MM/WH alternative model
 (new binding forms)</p>
 <ul>
 <li>Allen's 1 extra global scope contourc</li>
@@ -471,13 +473,15 @@ Global Object and Global Lexical Scope... when a <code>let</code> binding occurs
 <li>Shadows all properties on the Global object</li>
 <li>Does not create a Global property</li>
 </ul>
-<a href="#test-262"><h1 id="test-262">Test 262</h1></a><p>(Presented by Istvan Sebastian, ECMA)</p>
+<a href="#test-262"><h2 id="test-262">Test 262</h2></a><p>(Istvan Sebastian, ECMA)</p>
 <p>IS: Someone needs to update the site with the latest version of the test suite in zip file format.</p>
 <p>LH/RW/AWB: Needs to be an automated process, if that's possible within the scope of ECMA's policies.</p>
 <p>IS: Needs archival snapshots. The standards body is still a classic style standards organization that needs to abide its rules and policies.</p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><p>Bill Ticehurst to produce recommendation for the automated archival of test 262 at arbitrary states, as needed.
-Rick Waldron volunteers to assist as necessary.</p>
-<a href="#create-archival-utility-for-ecma-wiki"><h1 id="create-archival-utility-for-ecma-wiki">Create Archival Utility for ECMA Wiki</h1></a><p>2012-10-31: <code>wget -r -l 0 http://wiki.ecmascript.org/</code></p>
-<a href="#conclusionresolution-optional-feature-class-scoped-name-declarations"><h4 id="conclusionresolution-optional-feature-class-scoped-name-declarations">Conclusion/Resolution</h4></a><p>Rick Waldron will champion this</p>
+<a href="#conclusionresolution-test-262"><h4 id="conclusionresolution-test-262">Conclusion/Resolution</h4></a><ul>
+<li>Bill Ticehurst to produce recommendation for the automated archival of test 262 at arbitrary states, as needed.
+Rick Waldron volunteers to assist as necessary.</li>
+</ul>
+<a href="#create-archival-utility-for-ecma-wiki"><h2 id="create-archival-utility-for-ecma-wiki">Create Archival Utility for ECMA Wiki</h2></a><p>2012-10-31: <code>wget -r -l 0 http://wiki.ecmascript.org/</code></p>
+<a href="#conclusionresolution-create-archival-utility-for-ecma-wiki"><h4 id="conclusionresolution-create-archival-utility-for-ecma-wiki">Conclusion/Resolution</h4></a><p>Rick Waldron will champion this</p>
 
 </body>

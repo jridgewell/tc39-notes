@@ -8,7 +8,7 @@
 
 <title>January 24, 2017 Meeting Notes</title>
 <body class="markdown-body">
-<a href="#january-24-2017-meeting-notes"><h1 id="january-24-2017-meeting-notes">January 24, 2017 Meeting Notes</h1></a><p>Allen Wirfs-Brock (AWB), Waldemar Horwat (WH), Jordan Harband (JHD), Brian Terlson (BT), Michael Ficarra (MF), Adam Klein (AK), Chip Morningstar (CM), Dave Herman (DH),  Kent C. Dodds (KCD), Kevin Gibbons (KG), Tim Disney (TD), Daniel Ehrenberg (DE), Shu-yu Guo (SYG), Michael Saboff (MS), James Kyle (JK), Franziska Hinkelmann (FH), Anna Henningsen (AH), John Lenz (JL), Sebastian Markbage (SM), Bradley Farias (BF), Jeff Morrison (JM), Tyler Kellen (TK), Gabriel Isenberg (GI), James Snell (JSL), Maggie Pint (MPT), Chris Hyle (CH), Gabriel Isenberg (GI), Bert Belder (BB), Zibi Braniecki (ZB), Jamund Ferguson (JXF), Mathias Bynens (MB), Leo Balter (LB), Istvan Sebestyen (IS)</p>
+<a href="#january-24-2017-meeting-notes"><h1 id="january-24-2017-meeting-notes">January 24, 2017 Meeting Notes</h1></a><p>Allen Wirfs-Brock (AWB), Waldemar Horwat (WH), Jordan Harband (JHD), Brian Terlson (BT), Michael Ficarra (MF), Adam Klein (AK), Chip Morningstar (CM), Dave Herman (DH),  Kent C. Dodds (KCD), Kevin Gibbons (KG), Tim Disney (TD), Daniel Ehrenberg (DE), Shu-yu Guo (SYG), Michael Saboff (MS), James Kyle (JK), Franziska Hinkelmann (FHN), Anna Henningsen (AH), John Lenz (JLZ), Sebastian Markbage (SM), Bradley Farias (BF), Jeff Morrison (JM), Tyler Kellen (TKN), Gabriel Isenberg (GI), James Snell (JSL), Maggie Pint (MPT), Chris Hyle (CH), Gabriel Isenberg (GI), Bert Belder (BB), Zibi Braniecki (ZB), Jamund Ferguson (JXF), Mathias Bynens (MB), Leo Balter (LB), Istvan Sebestyen (IS)</p>
 <a href="#adopting-the-agenda"><h2 id="adopting-the-agenda">Adopting the agenda</h2></a><ul>
 <li>Start with Istvan's items to get them out of the way</li>
 <li>Jeff Morrison more free on Tuesday, preferably</li>
@@ -176,7 +176,7 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <p>BT: In some cases, yes, but that will create more checks</p>
 <p>AWB: If the primary issue is user confusion, give them a paragraph of text</p>
 <p>DH: I'm not sure that's accurate. It doesn't matter what the error message said, It's that they got the error after the super ran and din't know ecma backwards and forwards. Nobody should be expected to memorize these semantics. Their experience was the constructor ran, but i got an error saying it couldn't run. It's one of those up is down kind of experiences where you question yoru grasp of basic logic. It doesn't matter what the error messages says, the confusion you draw is that you are both running and not running this</p>
-<p>JL: I think you could word it properly, this rebinding attempt, this or that</p>
+<p>JLZ: I think you could word it properly, this rebinding attempt, this or that</p>
 <p>DH: That's true, I guess you could say you could make it clear that wafter we ran it a second time we realized we ran it a second time</p>
 <p>DE: We've been discussing this topic for awhile, we didn't atlk about timeboxes, it seems this is a little contentious</p>
 <p>AWB: Maybe, the way I would approach everything for the 2017 edition, the timebox is the meeting itself.</p>
@@ -397,7 +397,7 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <ul>
 <li><a href="https://docs.google.com/presentation/d/11O_wIBBbZgE1bMVRJI8kGnmC6dWCBOwutbN9SWOK0fU/view#slide=id.p">slides</a></li>
 </ul>
-<p>GI: I'm Gabriel Isenberg, here to talk about null propagation operator. This proposal is also know as &quot;elvis operator&quot; ?.</p>
+<p>GI: I'm Gabriel Isenberg, here to talk about null propagation operator. This proposal is also know as &quot;existential operator&quot; ?.</p>
 <p>All: having a hard time reading the screen</p>
 <p>All: Scaling in the browser is hard. Booo at the results!</p>
 <p>GI: The common pattern today is using &amp;&amp; operator, which is very verbose. We want to support message.body?.user?.firstname || 'default'. If any object is not defined along the way, we should return null/undefined. There has been a lot of discussion around this in the past. We have spec text that speaks to what happens when we hit null or undefined in the chain. This has been proposed in Typescript but was ultimately punted waiting on EcmaScript support.</p>
@@ -407,10 +407,10 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <p>DH: I'd give strong support</p>
 <p>BT: I'd support this</p>
 <p>DH: It's not an accident that this is in high demand is that most applications read data that comes in from a dynamic source. Very often you can't predict statically whether all the pieces will be there. Maybe the data is ill formed, or you have a format with multiple options. Either way, this need to dynamically dig into nested structure happens all the time.</p>
-<p>TK: This pattern has been in every application I've ever written, all over the place.</p>
-<p>JL: I think this is needed, but it shouldn't be the only place it's added (support for brackets, calls, etc)., as Claude Pache's proposal does. We should also avoid encouraging ||</p>
+<p>TKN: This pattern has been in every application I've ever written, all over the place.</p>
+<p>JLZ: I think this is needed, but it shouldn't be the only place it's added (support for brackets, calls, etc)., as Claude Pache's proposal does. We should also avoid encouraging ||</p>
 <p>DH: There is an important sense for which this ties into the specific semantics of this operator. How does this operator treat falsy values. If we want a cohesive overall story. None of that is a stage 1 concern.</p>
-<p>JL: Before we finalize it, even before we, we should consider additional operators.</p>
+<p>JLZ: Before we finalize it, even before we, we should consider additional operators.</p>
 <p>AWB: Relevant to stage one is what are we making stage 1? Is it just this operator? Or is it the general problem dealing with accessing and invoking properties. Is it the dot operator, is it new? The scope of this item should be large enough to explore this space.</p>
 <p>DH: It's full of cross-cutting concerns. We want to think about this. It's the usual dance, the totality of the problem is large and we want to consider it but we don't want it to stop progress.</p>
 <p>AWB: As long as we define this item in a way that is broad enough to make it clear that we want to consider</p>
@@ -423,7 +423,7 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <p>WH: I like the proposal, but the free grouping section seems odd. From the document:</p>
 <p><code>(a?.b).c().d // equivalent to: a?.b.c().d</code></p>
 <p>I understand how that came about but I don't think that parentheses-overriding weirdness should be included.</p>
-<p>JL: I'm not sold on the weird short circuiting.</p>
+<p>JLZ: I'm not sold on the weird short circuiting.</p>
 <p>DH: I'm not sure the call case is so important.</p>
 <p>AWB: Claude's proposal addresses a lot of the edge cases; whether we like the particular decisions or not is something to look into.</p>
 <p>MF: Would you be interested in moving this forward without syntax? I'm worried about the explosion of notation. After this proposal is in, when new language features come in, will we need to give them associated question mark forms?</p>
@@ -440,9 +440,9 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <p>MF: I don't want to bikeshed on particular syntax issues</p>
 <p>WH: ?.( is not a syntax issue. I don't think you should be calling functions on things that might not call a function.</p>
 <p>AWB: Isn't that your classic, &quot;I want to call this method if it is there?&quot;</p>
-<p>JL: I agree that the .? or whatever syntax we use, the property accessors we use are the most valuable. The rest of them seem like they have reasonable alternatives.</p>
+<p>JLZ: I agree that the .? or whatever syntax we use, the property accessors we use are the most valuable. The rest of them seem like they have reasonable alternatives.</p>
 <p>DH: To my mind, when you're adding syntax to the language it's for the most common idioms that you're trying to bless with the most concise notation. That you might ever want to say something is not the bar, it's that it's very common and idiomatic. I could be convinced otherwise, but pulling out a function from something that might not be there is much much less common than accessing a piece of data. In the cases where you might need to access a function you can handle using the existing &amp;&amp; syntax but accessing field data is so common that we want concise syntax.</p>
-<p>JL: My motivation for the call was basically lots of setter/getter chains (getFoo()/setFoo(), not actually accessors). Maybe i should put together an example.</p>
+<p>JLZ: My motivation for the call was basically lots of setter/getter chains (getFoo()/setFoo(), not actually accessors). Maybe i should put together an example.</p>
 <p>MM: Concerned about semantics like <code>a?.b.c().d</code>, where the first &quot;?&quot; changes the meaning of all subsequent operators such as the  () and . attached to c and d. In this example c and d don't have ? operators and it's surprising to find out that, for example, c might not be called.</p>
 <p>DE: A nice thing about the surface syntax is that if you are accessing a private field on something other than this, you'll likely want to be able to do obj?.#x.</p>
 <p>AWB: I'm not sure we need to support this for private state.</p>
@@ -638,7 +638,7 @@ After a second super call, an error will always be thrown, it'll be called, but 
 <p>(quick discussion)</p>
 <p>SYB: We have consensus that it is a bug. We want it to print x and we may need a new spec mechanism to do this.</p>
 <p>MF: The small mechanics around it can be resolved in a PR</p>
-<p>JL: Random question. There are no bugs around global properties here, right? So what, if you have window.f, what happens?</p>
+<p>JLZ: Random question. There are no bugs around global properties here, right? So what, if you have window.f, what happens?</p>
 <p>SYG: I think the same thing happens. Properties of window are just like &quot;var f&quot; in the global scope</p>
 <a href="#conclusionresolution-13ie-discussion-of-annex-b333-evaldeclarationinstantiation-overwriting-bindings"><h4 id="conclusionresolution-13ie-discussion-of-annex-b333-evaldeclarationinstantiation-overwriting-bindings">Conclusion/Resolution</h4></a><ul>
 <li>Consensus on new semantics to print &quot;x&quot;

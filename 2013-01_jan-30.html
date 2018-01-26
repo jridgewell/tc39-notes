@@ -9,7 +9,7 @@
 <title>January 30, 2013 Meeting Notes</title>
 <body class="markdown-body">
 <a href="#january-30-2013-meeting-notes"><h1 id="january-30-2013-meeting-notes">January 30, 2013 Meeting Notes</h1></a><p>John Neumann (JN), Norbert Lindenberg (NL), Allen Wirfs-Brock (AWB), Rick Waldron (RW), Waldemar Horwat (WH), Tim Disney (TD), Eric Ferraiuolo (EF), Sam Tobin-Hochstadt (STH), Erik Arvidsson (EA), Brian Terlson (BT), Luke Hoban (LH), Matt Sweeney (MS), Doug Crockford (DC), Yehuda Katz (YK), Nebojša Ćirić (NC), Brendan Eich (BE), Andreas Rossberg (ARB)</p>
-<a href="#function-in-block-options"><h2 id="function-in-block-options">Function In Block Options</h2></a><p>(Presented by Luke Hoban)</p>
+<a href="#function-in-block-options"><h2 id="function-in-block-options">Function In Block Options</h2></a><p>(Luke Hoban)</p>
 <p>Option #1: No let and const in non-strict mode
 Option #2: Taking the breaking change, w/ evangelism
 Option #3: Hybrid semantics for function-in-block, that still maintained semantic alignment with let and const
@@ -290,7 +290,7 @@ Sustaining our position on the handling of let ambiguities
 (Note: this is a local consensus)</p>
 <p>MM: Declared as not holding up consensus, though not in agreement. I still think this is a terrible idea, but it looks like the best we can declare consensus on.</p>
 <p>BE: (Out of band) I think that's a good consensus, arrows can't have intrinsic names (contrast with NFEs) so arguments.callee may be wanted, so arrows should not be strict-only.</p>
-<a href="#staticclass-side-methods"><h2 id="staticclass-side-methods">Static/Class Side Methods</h2></a><p>(Presented by Yehuda Katz)</p>
+<a href="#staticclass-side-methods"><h2 id="staticclass-side-methods">Static/Class Side Methods</h2></a><p>(Yehuda Katz)</p>
 <pre><code><span class="hljs-symbol">ClassElement:</span>
   MethodDefinition
   <span class="hljs-string">"static"</span> MethodDefinition
@@ -298,7 +298,7 @@ Sustaining our position on the handling of let ambiguities
 <p>Full strawman here: <a href="http://wiki.ecmascript.org/doku.php?id=strawman:class_method_syntax">http://wiki.ecmascript.org/doku.php?id=strawman:class_method_syntax</a></p>
 <p>Supported by TypeScript, Continuum, etc.</p>
 <a href="#conclusionresolution-staticclass-side-methods"><h4 id="conclusionresolution-staticclass-side-methods">Conclusion/Resolution</h4></a><p>Consensus in support of this proposal. (File spec update ticket)</p>
-<a href="#revising-the-array-subclassing-kind-issue"><h2 id="revising-the-array-subclassing-kind-issue">Revising The Array Subclassing &quot;Kind&quot; Issue</h2></a><p>(Presented by Allen Wirfs-Brock)</p>
+<a href="#revising-the-array-subclassing-kind-issue"><h2 id="revising-the-array-subclassing-kind-issue">Revising The Array Subclassing &quot;Kind&quot; Issue</h2></a><p>(Allen Wirfs-Brock)</p>
 <p>Reiterates the issue at hand, illustrated here:</p>
 <pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">V</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Array</span> </span>{
   <span class="hljs-keyword">constructor</span>(...args) {
@@ -326,7 +326,7 @@ NodeList.from( [<span class="hljs-string">"div"</span>], node =&gt; <span class=
 <p>EF: It's possible to lose the context if you alias the ClassMethod</p>
 <p>MM: For consistency purposes, add thisArg</p>
 <a href="#conclusionresolution-revising-the-array-subclassing-kind-issue"><h4 id="conclusionresolution-revising-the-array-subclassing-kind-issue">Conclusion/Resolution</h4></a><p>Consensus on this proposal, with the addition of thisArg per Mark's request.</p>
-<a href="#47--fail-fast-destructuring-with--syntax-for-irrefutable-opt-in"><h2 id="47--fail-fast-destructuring-with--syntax-for-irrefutable-opt-in">4.7  Fail-fast destructuring with ?-syntax for irrefutable opt-in</h2></a><p>(Presented by Brendan Eich, Andreas Rossberg)</p>
+<a href="#47--fail-fast-destructuring-with--syntax-for-irrefutable-opt-in"><h2 id="47--fail-fast-destructuring-with--syntax-for-irrefutable-opt-in">4.7  Fail-fast destructuring with ?-syntax for irrefutable opt-in</h2></a><p>(Brendan Eich, Andreas Rossberg)</p>
 <ol>
 <li>No ToObject(RHS).</li>
 <li>Exception on missing property selected without a ?-suffix.</li>
@@ -425,7 +425,7 @@ will work, but
 var undefined = 42;
 will fail.</p>
 <p><strong>General Agreement</strong></p>
-<a href="#411-name-property-of-functions"><h2 id="411-name-property-of-functions">4.11 Name Property of Functions</h2></a><p>(Presented by Brendan Eich, with additions by Brandon Benvie)
+<a href="#411-name-property-of-functions"><h2 id="411-name-property-of-functions">4.11 Name Property of Functions</h2></a><p>(Brendan Eich, with additions by Brandon Benvie)
 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:name_property_of_functions">http://wiki.ecmascript.org/doku.php?id=strawman:name_property_of_functions</a></p>
 <p>BE: Early approaches...</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{}
@@ -463,8 +463,10 @@ name is used instead.</p>
 <p>WH: There is a slight advantage to making it non-writable. Otherwise when writing it to change the function name, you'd expect it to change the result of &quot;toString&quot;.</p>
 <p>Discussion re: history of Function.prototype.toString result.</p>
 <p>MM: Explain the divergence, toString is a reflection of the source code itself and the name is how you'd like to identify the function within tools.</p>
-<a href="#conclusionresolution-411-name-property-of-functions"><h4 id="conclusionresolution-411-name-property-of-functions">Conclusion/Resolution</h4></a><p>Consensus on the proposal, with { writable: true }</p>
-<a href="#412-typed-arrays-update"><h2 id="412-typed-arrays-update">4.12 Typed Arrays Update</h2></a><p>(Presented by Allen Wirfs-Brock)</p>
+<a href="#conclusionresolution-411-name-property-of-functions"><h4 id="conclusionresolution-411-name-property-of-functions">Conclusion/Resolution</h4></a><ul>
+<li>Consensus on the proposal, with { writable: true }</li>
+</ul>
+<a href="#412-typed-arrays-update"><h2 id="412-typed-arrays-update">4.12 Typed Arrays Update</h2></a><p>(Allen Wirfs-Brock)</p>
 <p>Slides (pdf): <a href="http://wiki.ecmascript.org/lib/exe/fetch.php?id=meetings%3Ameeting_jan_29_2013&amp;cache=cache&amp;media=meetings:typedarray_status.pdf">http://wiki.ecmascript.org/lib/exe/fetch.php?id=meetings%3Ameeting_jan_29_2013&amp;cache=cache&amp;media=meetings:typedarray_status.pdf</a></p>
 <p>AWB: We're absorbing control of the TypedArray specification, previously authored by Khronos.</p>
 <p>W3C has dependencies on the Khronos spec.</p>
@@ -503,8 +505,7 @@ name is used instead.</p>
 <p><strong>Prototype Hierarchy Factoring</strong>
 (Diagram)</p>
 <p>AWB: 10 Prototype objects, 6 distinct method/get accessor functions per Realm.</p>
-<p>#10, TypedArray.prototype</p>
-<ul>
+<a href="#10-typedarrayprototype"><h1 id="10-typedarrayprototype">10, TypedArray.prototype</h1></a><ul>
 <li>[ BYTES_PER_ELEMENT: int abstract ]</li>
 <li>set() void</li>
 <li>subarray() void</li>
@@ -571,6 +572,8 @@ Uint8ClampedArray</p>
 <p>WH: This is not a lot of work for implementations, and implementations (as opposed to users) are clearly in the better place to implement these efficiently.</p>
 <p>[STH: After the end of the official meeting, there was some discussion as to why Typed Arrays wouldn't just become genuine Arrays.  This would mean
 that they'd have all the Array methods, some of which would throw on use (those that change length). This needs discussion at a future meeting.]</p>
-<a href="#conclusionresolution-412-typed-arrays-update"><h4 id="conclusionresolution-412-typed-arrays-update">Conclusion/Resolution</h4></a><p>Move forward with the plan presented.</p>
+<a href="#conclusionresolution-412-typed-arrays-update"><h4 id="conclusionresolution-412-typed-arrays-update">Conclusion/Resolution</h4></a><ul>
+<li>Move forward with the plan presented.</li>
+</ul>
 
 </body>

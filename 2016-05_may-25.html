@@ -6,10 +6,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>May 25th 2016 Meeting Notes</title>
+<title>May 25, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<p>May 25th 2016 Meeting Notes</p>
-<a href="#attendees"><h2 id="attendees">Attendees</h2></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LB), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Jeff Morrison (JM), Domenic Denicola (DD)</p>
+<a href="#may-25-2016-meeting-notes"><h1 id="may-25-2016-meeting-notes">May 25, 2016 Meeting Notes</h1></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SYG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LBR), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Jeff Morrison (JM), Domenic Denicola (DD)</p>
 <p>Over Hangouts (part-time): Dean Tribble (DT), Nikolaus Papaspyrou</p>
 <a href="#agenda"><h2 id="agenda">Agenda</h2></a><p>??: Unfortunately we will not able to cover all topics. There is a priority for proposals that have to advance in this meeting. The target is for each topic one hour of discussion maximum. We will see how that will work out...</p>
 <p><strong>NOTE from Istvan</strong>: The formal Ecma rule is that any proposal that has to be voted upon formally (i.e. one vote per member company present in the voting) in an Ecma TC is a publication at least 15 days before the TC meeting. Anything shorten that that can be introduced, discussed, move forward for further discussion, consideration, etc... but a &quot;formal&quot; TC decision is not possible.</p>
@@ -23,7 +22,7 @@
 <p>DH: the decorators feature is an extensibility feature that allows you to transform something in the source into 0 or more alternatives</p>
 <p>DD: is the value property a method or a function?</p>
 <p>YK: it is an uninitialised closure that errors on invocation</p>
-<p>SG: what if the list has multiple entries with the same name?</p>
+<p>SYG: what if the list has multiple entries with the same name?</p>
 <p>YK: we may want to validate</p>
 <p>YK: [<em>presentation finished</em>]</p>
 <p>DD: many abstract ops in current spec text are undefined</p>
@@ -225,7 +224,7 @@
 <p>AS: <em>show more slides</em></p>
 <p>BT: Would like to be able to set a conditional breakpoint on the ref interpreter to test if test262 hits it.</p>
 <p>WH: A similar &quot;reference implementation&quot; previously attempted in ES4</p>
-<p>SG: This seems very familiar, did I request this of the authors a couple of years ago?</p>
+<p>SYG: This seems very familiar, did I request this of the authors a couple of years ago?</p>
 <p>AS: Yes, you were the direct inspiration for this!</p>
 <p>YK: Less sofisticated tools would like to make use of this, eg linting. A more accessable language is good. Lots of people would
 find that JS is the easiest to write in.</p>
@@ -300,7 +299,7 @@ justify/rationalise the breakage.</p>
 <p>WH: Why does cancellation carry a reason?</p>
 <p>DD: Maybe it doesn't need one, but it seems nice and analogous to exceptions.</p>
 <p>MM: Cancellation should be as fast as normal control flow and should not collect stack traces. It doesn't collect stack traces.</p>
-<p>SG: try-catch is not slow because it is an exceptional event, it is slow because of the non-locality itself</p>
+<p>SYG: try-catch is not slow because it is an exceptional event, it is slow because of the non-locality itself</p>
 <p>FST: motivation?</p>
 <p>YK: XHR has an abort feature; fetch API is Promise-based and cannot have a similar feature</p>
 <p>BT: this is especially important if you await one of these promises</p>
@@ -332,7 +331,7 @@ justify/rationalise the breakage.</p>
 <a href="#conclusionresolution-cancelable-promises"><h4 id="conclusionresolution-cancelable-promises">Conclusion/Resolution</h4></a><ul>
 <li>Stage 1!</li>
 </ul>
-<a href="#definitive-decision-for-test262-python-runner"><h2 id="definitive-decision-for-test262-python-runner"><a href="https://github.com/tc39/test262/issues/647">Definitive decision for test262 python runner</a> (Mike Pennisi)</h2></a><p>LB: TC39 agreed to deprecate the python runner in 2014, we want to remove it from test262 as it demands extra energy on a deprecated tool while implementing new features.</p>
+<a href="#definitive-decision-for-test262-python-runner"><h2 id="definitive-decision-for-test262-python-runner"><a href="https://github.com/tc39/test262/issues/647">Definitive decision for test262 python runner</a> (Mike Pennisi)</h2></a><p>LBR: TC39 agreed to deprecate the python runner in 2014, we want to remove it from test262 as it demands extra energy on a deprecated tool while implementing new features.</p>
 <p>FST: We can work it out. It does not need to move it to a new TC39's repository.</p>
 <p><em>many</em>: let's remove it.</p>
 <a href="#conclusionresolution-definitive-decision-for-test262-python-runner"><h4 id="conclusionresolution-definitive-decision-for-test262-python-runner">Conclusion/Resolution</h4></a><ul>

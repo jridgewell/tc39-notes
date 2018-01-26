@@ -90,19 +90,19 @@
 </ul>
 <a href="#16ib-mathsignbit-proposal"><h2 id="16ib-mathsignbit-proposal">16.i.b. Math.signbit proposal</h2></a><p>(JF Bastien, presented by Keith Miller)</p>
 <p><a href="https://tc39.github.io/proposal-Math.signbit/Math.signbit.html">https://tc39.github.io/proposal-Math.signbit/Math.signbit.html</a></p>
-<p>KMR: propose a signbit function that will behave as a signbit function should</p>
+<p>KM: propose a signbit function that will behave as a signbit function should</p>
 <ul>
 <li>The existing Math.sign gives results that are unexpected</li>
 </ul>
 <p>WH: I disagree with how it's presented, but don't disagree with the feature</p>
-<p>KMR:</p>
+<p>KM:</p>
 <p><a href="https://tc39.github.io/proposal-Math.signbit/Math.signbit.html#sign">https://tc39.github.io/proposal-Math.signbit/Math.signbit.html#sign</a></p>
 <ul>
 <li>Should we coerce the number?</li>
 <li>What should we do with NaN?</li>
 </ul>
 <p>WH/MM: Why is Math.sign inadequate? Why would you like to get this information?</p>
-<p>KMR: want to do low level operations that require the signbit</p>
+<p>KM: want to do low level operations that require the signbit</p>
 <p>RW: I spend a lot of time writing bit shifting operations to determine sign of values assembled from 8 bit, looking for signs.
 (After revisiting real driver code, and further discussion re: this is about the IEEE754 double precision sign bit, I retract this use case evidence. Determining signbit for these cases would require knowing the number of bits the value should be clamped to).</p>
 <p>MM: Is there a situation where you want just the sign bit but not the full 64-bit serialization of the number? If you usually/always want the full serialization too, you can just serialize to a TypedArray.</p>
@@ -111,9 +111,9 @@
 <p>WH: Using copysign or Math.signbit for that is a bug! If the original untruncated input is actually -0 (which you can get in various ways without any roundoff), it should not be rendered in red. Instead, use x&lt;0 as the test.</p>
 <p>YK: There may be cases that exist that can be satisfied with this operation in other languages?</p>
 <p>MM echoes: let's take a look at other languages.</p>
-<p>KMR: There are many results for signbit in Apple codebase</p>
+<p>KM: There are many results for signbit in Apple codebase</p>
 <p>WH: How many of them are bugs?</p>
-<p>KMR: Need to answer these questions:</p>
+<p>KM: Need to answer these questions:</p>
 <p><a href="https://tc39.github.io/proposal-Math.signbit/Math.signbit.html#alts">https://tc39.github.io/proposal-Math.signbit/Math.signbit.html#alts</a></p>
 <p>WH: If we're going to do this, the way it's specified now is the right way to do it: result is a boolean, NaNs are always &quot;positive&quot; to avoid another Pandora's box. However, I haven't seen any good motivation so far as to why we should do it. The one thing this does is provide a way to distinguish between +0 and -0; the canonical way of doing that has been to take their reciprocals.</p>
 <p>?: Or use Object.is, which is the new hotness.</p>
@@ -146,7 +146,7 @@
 <p>SYG: Need to sync upstream? Not a clear rebase path forward</p>
 <p>AWB: Looking for an additional implementor for Stage 4</p>
 <p>SYG: Does Firefox count?</p>
-<p>KMR: Michael Saboff is on board, as in: &quot;supports the idea&quot;</p>
+<p>KM: Michael Saboff is on board, as in: &quot;supports the idea&quot;</p>
 <a href="#conclusionresolution-16ic-status-update-on-regexp-proposals-lookbehind-unicode-properties-dotall-flag-and-named-groups-status-update"><h4 id="conclusionresolution-16ic-status-update-on-regexp-proposals-lookbehind-unicode-properties-dotall-flag-and-named-groups-status-update">Conclusion/Resolution</h4></a><ul>
 <li>General support?</li>
 </ul>
@@ -260,7 +260,7 @@
 <ul>
 <li>Can produce a memory buffer containing Float 16s...missed</li>
 </ul>
-<p>KMR: is it a matter of costing X times as much in software?</p>
+<p>KM: is it a matter of costing X times as much in software?</p>
 <p>DE/SM: Already supported in webgl... serving hardware that can only use half-floats in a render target... passing data through, computational format use cases. Best way to get the most amount of bits through the process.</p>
 <p>DD: Can already pack the bits into 16-bit elements and use an array buffer</p>
 <p>SM: Have use case, but much more narrow</p>
@@ -276,7 +276,7 @@
 </ul>
 <a href="#16ih-why-allow-bindingpattern-for-bindingrestparameter-for-object-rest-maybe-we-should-just-allow-identifiers"><h2 id="16ih-why-allow-bindingpattern-for-bindingrestparameter-for-object-rest-maybe-we-should-just-allow-identifiers">16.i.h Why allow BindingPattern for BindingRestParameter for object rest. Maybe we should just allow identifiers.</h2></a><p>(Keith Miller on behalf of Saam Barati)</p>
 <p><a href="https://github.com/tc39/ecma262/issues/915">https://github.com/tc39/ecma262/issues/915</a></p>
-<p>KMR: (walking through the issue linked above)</p>
+<p>KM: (walking through the issue linked above)</p>
 <p>The simplest example:</p>
 <pre><code class="language-js"><span class="hljs-keyword">let</span> { ...[] } = {};
 </code></pre>
@@ -296,7 +296,7 @@
 <p>AWB: We still have the ability to define <code>...</code> in object rest destructuring as &quot;take all the keys from the RHS that were not already destructured, create an <em>iterator</em> from that, and use that iterator for destructuring into whatever pattern comes after the <code>...</code>, which would work for <code>...[]</code></p>
 <p>BN: Does that work for <code>{ a, ...{ b, c }}</code>?</p>
 <p>SM: We would specify that case separately, so we would not create the iterator AWB proposed.</p>
-<p>KMR: We could say it's disallowed to write <code>...[</code> for now, then design the behavior later.</p>
+<p>KM: We could say it's disallowed to write <code>...[</code> for now, then design the behavior later.</p>
 <p>HZ: <code>...[</code> used to be a syntax error in Babel in 6.0, but we changed it to be allowed in 7.0 (still alpha) so we can make a patch.</p>
 <p>Agreement on making <code>...[</code> a syntax error for now, which can be revisited later.</p>
 <p>SM: What about <code>...{</code>?</p>
@@ -350,7 +350,7 @@
 <p><a href="https://docs.google.com/presentation/d/1qfoLTniLUVJ5YNFrha7BaVumAnW0ZgcCfUU8UbyyuYY/edit#slide=id.g1f527b5ce9_0_103">https://docs.google.com/presentation/d/1qfoLTniLUVJ5YNFrha7BaVumAnW0ZgcCfUU8UbyyuYY/edit#slide=id.g1f527b5ce9_0_103</a></p>
 <p>DH: Strong &quot;EWM&quot; (Extensible Web Manifesto) story... service worker hook vs. new js syntax? A low level hook would allow people to experiment on workflows immediately in userland</p>
 <p>WH: What does SRI stand for?</p>
-<p>SS/KMR: &quot;Subresource Integrity&quot; (see: <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity</a>)</p>
+<p>SS/KM: &quot;Subresource Integrity&quot; (see: <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity</a>)</p>
 <p>DD: sharing feedback from team</p>
 <p>BT: Typescript effectively has out-of-band type declarations for imports, which might be a precedent for out-of-band metadata about imports generally.</p>
 <p>JM: Flow has in-band <code>declare export ...</code> annotations and out-of-band declarations, and people seem to prefer out-of-band.</p>

@@ -8,7 +8,7 @@
 
 <title>January 26, 2017 Meeting Notes</title>
 <body class="markdown-body">
-<a href="#january-26-2017-meeting-notes"><h1 id="january-26-2017-meeting-notes">January 26, 2017 Meeting Notes</h1></a><p>Allen Wirfs-Brock (AWB), Waldemar Horwat (WH), Jordan Harband (JHD), Brian Terlson (BT), Michael Ficarra (MF), Adam Klein (AK), Chip Morningstar (CM), Dave Herman (DH),  Kent C. Dodds (KCD), Kevin Gibbons (KG), Tim Disney (TD), Daniel Ehrenberg (DE), Shu-yu Guo (SYG), Michael Saboff (MS), James Kyle (JK), Franziska Hinkelmann (FH), Anna Henningsen (AH), John Lenz (JL), Sebastian Markbage (SM), Bradley Farias (BF), Jeff Morrison (JM), Tyler Kellen (TK), Gabriel Isenberg (GI), James Snell (JSL), Maggie Pint (MPT), Chris Hyle (CH), Gabriel Isenberg (GI), Bert Belder (BB), Zibi Braniecki (ZB), Jamund Ferguson (JXF), Istvan Sebestyen (IS), Keith Miller (KM), Myles Borins (MBS)</p>
+<a href="#january-26-2017-meeting-notes"><h1 id="january-26-2017-meeting-notes">January 26, 2017 Meeting Notes</h1></a><p>Allen Wirfs-Brock (AWB), Waldemar Horwat (WH), Jordan Harband (JHD), Brian Terlson (BT), Michael Ficarra (MF), Adam Klein (AK), Chip Morningstar (CM), Dave Herman (DH), Kent C. Dodds (KCD), Kevin Gibbons (KG), Tim Disney (TD), Daniel Ehrenberg (DE), Shu-yu Guo (SYG), Michael Saboff (MS), James Kyle (JK), Franziska Hinkelmann (FHN), Anna Henningsen (AH), John Lenz (JLZ), Sebastian Markbage (SM), Bradley Farias (BF), Jeff Morrison (JM), Tyler Kellen (TKN), Gabriel Isenberg (GI), James Snell (JSL), Maggie Pint (MPT), Chris Hyle (CH), Bert Belder (BBR), Zibi Braniecki (ZB), Jamund Ferguson (JXF), Istvan Sebestyen (IS), Keith Miller (KM), Myles Borins (MBS)</p>
 <a href="#looking-at-the-proposal-list"><h2 id="looking-at-the-proposal-list">Looking at the proposal list</h2></a><p>(Dave Herman)</p>
 <p>DH: Let's reexamine <a href="https://github.com/tc39/proposals">https://github.com/tc39/proposals</a> . Can we think about what proposals are still possible for the future?</p>
 <p>AWB: What things are likely to be there for 2018?</p>
@@ -50,9 +50,9 @@
 <p>JHD: I'm aggressively curating and have been for awhile</p>
 <p>DH: Jordan is doing really important work and I think we should acknowldge that</p>
 <p>AWB: Can we put that in the minutes?</p>
-<p>TK: Getting it all</p>
+<p>TKN: Getting it all</p>
 <p>DH: Thanks Tyler</p>
-<p>JL: So are we going to remove more things from the main proposals list?</p>
+<p>JLZ: So are we going to remove more things from the main proposals list?</p>
 <p>DH: What I am hearing is an emerging consensus around proposals into some separate file that...</p>
 <p>JHD: We already have withdrawn proposals, for things that are abandonded, rejected, etc. We can add something for things which are potentially still active. It's more likely that list will contain stage 0 or 1 proposals than 2 or 3. If that is the status of the simd spec, for example, okay</p>
 <p>DH: I'm unclear how backburner SIMD is.</p>
@@ -68,7 +68,7 @@
 <p>AK: I don't know how you can get less.... any stage between 0 and 1. If a stage 2 item went dormant, a stage 3 item is even harder, even though we have that. This is why i explicitly withdrew Object.observe.</p>
 <p>DH: If something is removed, we should remove it....</p>
 <p>AK: I don't think we need to cull the deferred list.</p>
-<p>TK: It's the backlog</p>
+<p>TKN: It's the backlog</p>
 <p>DH: I officially have no opinion anymore</p>
 <p>AWB: I'm going to make a a motion that Jordan is now the official GitHub curator</p>
 <p>JHD: I will make a proposal template repo over the next month or so</p>
@@ -153,7 +153,7 @@
 <p>AK: You already have may expressions that throw now</p>
 <p>JHD: but the do doesn't catch it right?</p>
 <p>DH: Correct, it just propagates them</p>
-<p>TK: So i think we are over our timebox. I think the original idea behind this was to get to stage 1. It seems clear it's worth taking the time since we're already doing that, maybe we should just move on.</p>
+<p>TKN: So i think we are over our timebox. I think the original idea behind this was to get to stage 1. It seems clear it's worth taking the time since we're already doing that, maybe we should just move on.</p>
 <p>KG: One more thing, async do is really interesting idea. It would be worth making sure there can be symmetry. Nonexceptional control flow makes no sense in an async do context. An await 0 and a continue the loop the do expression is in the loop has already exited. E.g.</p>
 <p><code>for (a of b) async do {if (await f()) continue; } // by the time the continue is reached, the loop has exited</code></p>
 <p>WH: Explain what you mean by async do.</p>
@@ -344,7 +344,7 @@ AK: That is three that exist</p>
 <p>JHD: Should we start putting new Web APIs in a privileged namespace?</p>
 <p>AK: I don't think it's likely that the web would do that.</p>
 <p>DH: We have restricted privilege in JavaScript, so it makes sense to separate this.</p>
-<p>JL: It seems like this privilege doesn't correspond to what users would think.</p>
+<p>JLZ: It seems like this privilege doesn't correspond to what users would think.</p>
 <p>AWB: It seems strange to say SuperPrivilegedObject.global--who'd want to say that</p>
 <p>MF: The global object isn't typically being used to say like, i for iterating over an array. It's a system level thing it is seen as a priority.</p>
 <p>JHD: People access the global variable a lot because historically we had no module system.</p>
@@ -533,7 +533,7 @@ AK: That is three that exist</p>
 <p>JHD: I'm sorry if I phrased it that way, that is subpar but I don't find it unacceptable.</p>
 <p>DH: The other part that might be helpful.</p>
 <p>CM: This kind of ties with what Jeff said. I'm concerned about our awareness of what users think. We have an availabililty bias by talking on github. Are the typical JavaScript developers even aware of Set and Define.</p>
-<p>TK/MPT: No</p>
+<p>TKN/MPT: No</p>
 <p>CM: I would submit people think it is a Set and end of discussion</p>
 <p>JM: Let's acknolwedge that we can go rounds on this speculative and subjective thing for a long time. The compelling thing for define isn't the tradeoffs that go away. There is a real future compatibility problem with const in presence of going with set, that was the convincer for me that define is the way to go. That seems like it should be stronger than these concerns that are hard to substantiate.</p>
 <p>DH: Just to follow up, Set vs Define is a red herring. Nobody including half the time experts of the spec are thinking at that level. They are working in the conceptual space they are in. No matter what, they have no expectation that it will trigger something up the superclas chain. As I am writing my code am I thinking at all about the fact that a field Iv'e described could be triggering a setter?</p>
@@ -555,7 +555,7 @@ AK: That is three that exist</p>
 <p>DE: Not clear to me</p>
 <p>DH: maybe the problem is that nobody ever uses setters</p>
 <p>DE: We have them all over the place</p>
-<p>JL: it doesn't come up in practice much</p>
+<p>JLZ: it doesn't come up in practice much</p>
 <p>DH: What I mean is more, look at real code and see... put yourself in the position of the person writing the code and imagine refactoring scenarios. Put yourself directly in the drivers seat of the code.</p>
 <p>DE: IT's not clear to me how to do a representative sample of code.</p>
 <p>JHD: is this an example? (displayed a constructed code sample that showed the observable difference between Set and Define)</p>

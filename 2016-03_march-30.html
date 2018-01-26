@@ -6,17 +6,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>March 30th 2016 Meeting Notes</title>
+<title>March 30, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<p>March 30th 2016 Meeting Notes</p>
-<a href="#attendees"><h2 id="attendees">Attendees</h2></a><p>Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Adam Klein (AK), Mark Miller (MM), Brian Terlson (BT), Domenic Denicola (DD), Brad Nelson (BNN), JF Bastien (JFB), Joe Lencioni, Sebastian Markbage, Jeff Morrison, Kevin Smith (KS), Jafar Husain (JH), Lars Hansen (LHN), Saam Barati, Keith Miller, Michael Saboff, Eric Ferraiuolo (EF),Eric Faust (FST), Chip Morningstar (CM), Dean Tribble (DT), Shu-yu Guo (SG), Tim Disney, Waldemar Horwat (WH), Bert Belder, Peter Jensen, Daniel Ehrenberg (DE), Caridy Patiño, Diego Ferreiro Val, Jean Fraucois Paradis, Shelby Hubick, Leo Balter (LB), Misko Hevery, Allen Wirfs-Brock (AWB), Kevin Gibbons (KG)</p>
+<a href="#march-30-2016-meeting-notes"><h1 id="march-30-2016-meeting-notes">March 30, 2016 Meeting Notes</h1></a><p>Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Adam Klein (AK), Mark Miller (MM), Brian Terlson (BT), Domenic Denicola (DD), Brad Nelson (BNN), JF Bastien (JFB), Joe Lencioni (JLI), Sebastian Markbage (SM), Jeff Morrison (JM), Kevin Smith (KS), Jafar Husain (JH), Lars Hansen (LHN), Saam Barati (SBI), Keith Miller (KM), Michael Saboff (MS), Eric Ferraiuolo (EF), Eric Faust (FST), Chip Morningstar (CM), Dean Tribble (DT), Shu-yu Guo (SYG), Tim Disney (TD), Waldemar Horwat (WH), Bert Belder (BBR), Peter Jensen (PJ), Daniel Ehrenberg (DE), Caridy Patiño (CP), Diego Ferreiro Val (DFV), Jean Fraucois Paradis (JFP), Shelby Hubick (SHK), Leo Balter (LBR), Misko Hevery (MHY), Allen Wirfs-Brock (AWB), Kevin Gibbons (KG)</p>
 <a href="#length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors"><h2 id="length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors">Length argument normalization for TypedArrays, ArrayBuffer and DataView constructors</h2></a><p>slide presentation by Leo Balter</p>
 <p>AWB: Explained the background for the weirdness here. Sources of odd and inconsistent type array index and length handling spec behavior in ES6: Kronos spec, what browsers actually do, input from implementors, legacy compatibility.</p>
 <p>DD: Current implementation status seems like the best guide here</p>
 <p>DE: But there might be things we could tighten down, and things we can't (like requiring integer indices)</p>
-<p>LB: Do you want to see more work at this meeting?</p>
+<p>LBR: Do you want to see more work at this meeting?</p>
 <p>AWB: Doing it on a github issue might be sufficient, the important thing is to think deeply about the issues</p>
-<a href="#conclusionresolution-length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors"><h4 id="conclusionresolution-length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors">Conclusion/resolution</h4></a><p>LB: to work out details on a github issue.</p>
+<a href="#conclusionresolution-length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors"><h4 id="conclusionresolution-length-argument-normalization-for-typedarrays-arraybuffer-and-dataview-constructors">Conclusion/resolution</h4></a><p>LBR: to work out details on a github issue.</p>
 <a href="#duplicate-sloppy-mode-function-in-block-web-compatibility-fix"><h2 id="duplicate-sloppy-mode-function-in-block-web-compatibility-fix">Duplicate sloppy mode function in block web compatibility fix</h2></a><p>Shu-yu Guo and Daniel Ehrenberg presenting slides: <a href="https://docs.google.com/presentation/d/1E_LM_X4_EMEhcmfiA_AHJ4zw0aKDM8DBxqFOmNsiMHig/edit#slide=id.p">https://docs.google.com/presentation/d/1E_LM_X4_EMEhcmfiA_AHJ4zw0aKDM8DBxqFOmNsiMHig/edit#slide=id.p</a></p>
 <p>AWB: The semantics in the block have to match ES6, so whatever we do to solve [&quot;Problem #2&quot;] must follow ES6.</p>
 <p>MM: Which browsers have shipped the Annex B behavior?</p>

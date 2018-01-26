@@ -6,9 +6,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>Sept 29 2016 Meeting Notes</title>
+<title>September 29, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<a href="#sept-29-2016-meeting-notes"><h1 id="sept-29-2016-meeting-notes">Sept 29 2016 Meeting Notes</h1></a><p>Brian Terlson (BT), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LB), Yehuda Katz (YK), Jafar Husain (JH), Domenic Denicola (DD), Rick Waldron (RW), John Buchanan (JB), Kevin Gibbons (KG), Peter Jensen (PJ), Tom Care (TC), Dave Herman (DH), Bradley Farias (BF), Dean Tribble (DT), Jeff Morrison (JM), Sebastian Markbåge (SM), Saam Barati (SB), Kris Gray (KGY), John-David Dalton (JDD), Daniel Rosenwasser (DRR), Jean-Francis Paradis (JFP), Sathya Gunasekasan (SGN), Juan Dopazo (JDO), Bert Belder (BBR), Shu-yu Guo (SYG), Eric Ferraiuolo (EF), Caridy Patiño (CP), Allen Wirfs-Brock (AWB), Jacob Groundwater (JGR), Adam Klein (AK), Istvan Sebestyen (IST), Tom Van Cutsem (TVC), Istvan Sebestyen (partly, via Hangouts), Claude Pache (CP), James Kyle</p>
+<a href="#september-29-2016-meeting-notes"><h1 id="september-29-2016-meeting-notes">September 29, 2016 Meeting Notes</h1></a><p>Brian Terlson (BT), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LBR), Yehuda Katz (YK), Jafar Husain (JH), Domenic Denicola (DD), Rick Waldron (RW), John Buchanan (JB), Kevin Gibbons (KG), Peter Jensen (PJ), Tom Care (TC), Dave Herman (DH), Bradley Farias (BF), Dean Tribble (DT), Jeff Morrison (JM), Sebastian Markbåge (SM), Saam Barati (SB), Kris Gray (KGY), John-David Dalton (JDD), Daniel Rosenwasser (DRR), Jean-Francis Paradis (JFP), Sathya Gunasekasan (SGN), Juan Dopazo (JDO), Bert Belder (BBR), Shu-yu Guo (SYG), Eric Ferraiuolo (EF), Caridy Patiño (CP), Allen Wirfs-Brock (AWB), Jacob Groundwater (JGR), Adam Klein (AK), Istvan Sebestyen (IST), Tom Van Cutsem (TVC), Istvan Sebestyen (partly, via Hangouts), Claude Pache (CPE), James Kyle (JK)</p>
 <p>Istvan Sebestyen: The audio is very bad, unfortunately. ... Maybe I better write....
 Regarding the 2017 European meeting tell me when should it be. In March it would probably be cheaper. Also still skiing would be possible after or before the meeting if someone cares for that.
 May will be more expensive. Meeting place suggestion: Montreux - Royal Plaza Hotel.</p>
@@ -249,7 +249,7 @@ IBM: Yes
 Netflix: Yes
 Tilde: Yes
 Airbnb: Yes</p>
-<p>Next: ok to delegate TR104 updating to AWB and LB?</p>
+<p>Next: ok to delegate TR104 updating to AWB and LBR?</p>
 <p>YES</p>
 <a href="#conclusionresolution-revisit-ecma414-2nd-edition"><h4 id="conclusionresolution-revisit-ecma414-2nd-edition">Conclusion/Resolution</h4></a><ul>
 <li>ECMA414, 2nd Edition approved, send to Ecma/GA</li>
@@ -494,7 +494,7 @@ zalgo(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span
 </ul>
 <a href="#11iic-set-map-weakset-and-weakmap-of-and-from-methods"><h2 id="11iic-set-map-weakset-and-weakmap-of-and-from-methods">11.ii.c Set, Map, WeakSet, and WeakMap: of and from methods</h2></a><p>(Leo Balter)</p>
 <p><a href="https://github.com/leobalter/proposal-setmap-offrom">https://github.com/leobalter/proposal-setmap-offrom</a></p>
-<p>LB: Adding <code>of</code> and <code>from</code> to <code>Map</code>, <code>Set</code>, <code>WeakMap</code> &amp; <code>WeakSet</code></p>
+<p>LBR: Adding <code>of</code> and <code>from</code> to <code>Map</code>, <code>Set</code>, <code>WeakMap</code> &amp; <code>WeakSet</code></p>
 <ul>
 <li>Provide collection creation symmetry with Array</li>
 </ul>
@@ -510,7 +510,7 @@ zalgo(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span
 <p>FST: don't need to deprecate</p>
 <p>KG: insane not to provide a way to make the collection without forcing the brackets</p>
 <p>AK: Other evidence from the wild about demand? Is there a widely used library for this?</p>
-<p>LB: When working on test262 tests, we needed many tests for the constructor taking iterables of iterables.</p>
+<p>LBR: When working on test262 tests, we needed many tests for the constructor taking iterables of iterables.</p>
 <p>JH: Any polymorphism involved?</p>
 <p>AWB: Subclassing or .call'ing this on other constructors would encounter this issue, yes; you'd need to call <code>.add()</code> or something.</p>
 <ul>

@@ -6,10 +6,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
 
-<title>May 23rd 2016 Meeting Notes</title>
+<title>May 23, 2016 Meeting Notes</title>
 <body class="markdown-body">
-<p>May 23rd 2016 Meeting Notes</p>
-<a href="#attendees"><h2 id="attendees">Attendees</h2></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LB), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Domenic Denicola (DD), Yang Guo (YG)</p>
+<a href="#may-23-2016-meeting-notes"><h1 id="may-23-2016-meeting-notes">May 23, 2016 Meeting Notes</h1></a><p>Brian Terlson (BT), Dave Herman (DH), Michael Ficarra (MF), Jordan Harband (JHD), Waldemar Horwat (WH), Tim Disney (TD), Shu-yu Guo (SG), Mark Miller (MM), Kevin Smith (KS), Michael Saboff (MS), Eric Faust (FST), Chip Morningstar (CM), Daniel Ehrenberg (DE), Leo Balter (LBR), Yehuda Katz (YK), Jafar Husain (JH), Andreas Rossberg (ARB), Ben Smith (BS), Thomas Wood (TW), Alan Schmitt (AS), Brad Nelson (BNN), István Sebestyén (IS), John Neumann (JN), Domenic Denicola (DD), Yang Guo (YG)</p>
 <p>on Google Hangouts we've had some local Google folks: Michael Hablich, Yang Guo, Toon Verwaest, Daniel Clifford, Nikolas Papapyrou, Ben Titzer.</p>
 <a href="#discussion-of-the-agenda-and-timing"><h2 id="discussion-of-the-agenda-and-timing">Discussion of the agenda and timing</h2></a><p>PTC/STC on Tuesday morning/afternoon for MS employees to call in
 9 hours differences between CET and US Pacific time. Only afternoon works...
@@ -192,7 +191,7 @@ which have this sort of semantics.</p>
 <p>DH: Recommendation to test262: write a routine to experimentally determine the maximum stack size, and run this at the beginning, rather than starting at 100k.</p>
 <p>BT: Isn't it possible for this to come to a variable outcome?</p>
 <p>MS: I wrote this routine, and it's very hard to do it correctly determine the exact outcome. It required growing exponentially, then backing off, etc</p>
-<p>LB: After a lot of research, this was the best we found. It is not the happiest solution, but we couldn't find anything better. We just wanted to offer some form of tests on test262 for each feature of the spec, and that's what we did for tail call optimization. You already have to have a $PRINT function that implementations support, and this is similarly parameterized.</p>
+<p>LBR: After a lot of research, this was the best we found. It is not the happiest solution, but we couldn't find anything better. We just wanted to offer some form of tests on test262 for each feature of the spec, and that's what we did for tail call optimization. You already have to have a $PRINT function that implementations support, and this is similarly parameterized.</p>
 <p>BT: It's a pragmatic solution</p>
 <p>MF: Proper tail calls are unobservable and should not have a test262 test</p>
 <p>BT: But it is very useful and works on all implementations</p>
@@ -244,46 +243,46 @@ which have this sort of semantics.</p>
 <p>MS: Hard to do telemetry for this</p>
 <a href="#conclusionresolution-function-names"><h4 id="conclusionresolution-function-names">Conclusion/Resolution</h4></a><p>No change in the spec for now; MS says Safari will likely ship their compat workaround for now, and see if it can get more information for the next meeting or the one after that to consider the decision</p>
 <a href="#typedarrayarraybufferdataview-constructor-changes"><h2 id="typedarrayarraybufferdataview-constructor-changes"><a href="https://github.com/tc39/ecma262/pull/410">TypedArray/ArrayBuffer/DataView constructor changes</a></h2></a><p>(Leo Balter)</p>
-<p>LB: [<em>Presented bug comment showing behavior across browsers</em>]</p>
+<p>LBR: [<em>Presented bug comment showing behavior across browsers</em>]</p>
 <p>MM: What does n/a mean?</p>
-<p>LB: not providing that argument</p>
+<p>LBR: not providing that argument</p>
 <p>MS: JSC gives somewhat changed and more standards-compliant behavior for some cases listed here, more in line with all other implementations</p>
 <p>JHD: Seems like some of these have multiple browsers throwing, but your PR makes it not throw, in alignment with only V8. Why?</p>
-<p>LB: I'm trying to make a canonical approach</p>
+<p>LBR: I'm trying to make a canonical approach</p>
 <p>DE: We should consider web compatibility also for things that are not strictly at the intersection</p>
 <p>YK: E.g., Mobile web</p>
 <p>MM: When there's no hard rule applicable, about intersection semantics, then we can rely on soft factors. Another factor here is consistency among approaches.</p>
-<p>LB: Some of the real motivation is also web compatibility. For example, throwing errors for things which are not integers, or some other things, which did not throw in any browser but throws in the spec.</p>
+<p>LBR: Some of the real motivation is also web compatibility. For example, throwing errors for things which are not integers, or some other things, which did not throw in any browser but throws in the spec.</p>
 <p>MM: Is a particular -0 value correct?</p>
 <p>BT: We have had some -0-related bugs in the past; not sure if this is that.</p>
-<p>LB: What I have here is a new abstract operation, ToIndex, to uniformly treat all of these arguments.</p>
-<p><em>MM, LB: Going through the details of the spec</em></p>
-<p>LB: The new semantics for ToIndex are ToInteger, then check that it equals toLength of that (which asserts the range basically), allowing -0.</p>
+<p>LBR: What I have here is a new abstract operation, ToIndex, to uniformly treat all of these arguments.</p>
+<p><em>MM, LBR: Going through the details of the spec</em></p>
+<p>LBR: The new semantics for ToIndex are ToInteger, then check that it equals toLength of that (which asserts the range basically), allowing -0.</p>
 <p>YK: Point of hesitation that in some cases, almost all browsers throw, but one browser does not throw and the resulting semantics do not throw.</p>
 <p>MM: Seems like this is representing the length, rather than the index</p>
-<p>LB: Sometimes, it represents an offset index, e.g., the TypedArray byteOffset argument has ToIndex applied to it. I've bikeshedded a lot of different names!</p>
+<p>LBR: Sometimes, it represents an offset index, e.g., the TypedArray byteOffset argument has ToIndex applied to it. I've bikeshedded a lot of different names!</p>
 <p>CM: Question: How does ToIndex differ from ToLength? Are there places where ToLength is used which don't go through this?</p>
 <p>JHD: There are many uses</p>
-<p>LB: Many cases use ToLength that I cannot apply this check for ToIndex to.</p>
+<p>LBR: Many cases use ToLength that I cannot apply this check for ToIndex to.</p>
 <p>DE: e.g., all of the Array methods</p>
 <p>CM: OK, compatibility seems like a decisive argument</p>
 <p>MM: Why not just use ToLength?</p>
 <p>JHD: Because then it wouldn't throw a RangeError.</p>
 <p>MM: Although I prefer errors to no errors, I prefer smaller specs to larger specs. Why not just use ToLength?</p>
 <p>DE: I think Allen wanted to make TypedArrays as strict as possible. This PR seems like a good compromise.</p>
-<p>LB: It's also nice that we have stricter infinity behavior.</p>
+<p>LBR: It's also nice that we have stricter infinity behavior.</p>
 <p>MM: This sounds OK then</p>
-<p>LB: From TC39 philosophy, we could change later for throwing to not throwing, right?</p>
+<p>LBR: From TC39 philosophy, we could change later for throwing to not throwing, right?</p>
 <p>MM: Let's throw the error because want to throw the error</p>
 <p>YK: But we could go from throwing to not throwing, right?</p>
 <p>MM: We can, but let's get a good decision here.</p>
 <p>CM: Some of these things seem like weird cases that should throw an error, and some browsers do throw errors for some of these cases. Part of that is using a consistent rule everywhere, which i like, but if it's gonna be sloppy, I'm in favor of being more particular on edge cases.</p>
 <p>DE: One thing I really like about this proposal is how it's consistent between the different callsites. Some callsites cast to 0 in all browsers on NaN</p>
-<p>LB: I'm not totally stuck one way on NaN. Maybe we could throw. But I believe this proposal is the most consistent way. One historical reason Allen mentioned was to make it compatible with WebIDL. It's true that this is not exactly the same as WebIDL, but I also consulted with developers who use TypedArrays every day, and they liked this proposal.</p>
+<p>LBR: I'm not totally stuck one way on NaN. Maybe we could throw. But I believe this proposal is the most consistent way. One historical reason Allen mentioned was to make it compatible with WebIDL. It's true that this is not exactly the same as WebIDL, but I also consulted with developers who use TypedArrays every day, and they liked this proposal.</p>
 <p>MM: there are cases where it's an error to make a 0-length array?</p>
-<p>LB: I found all kinds of cases of inconsistencies here. This PR makes things more regular.</p>
+<p>LBR: I found all kinds of cases of inconsistencies here. This PR makes things more regular.</p>
 <p>MM: If the PR is adopted, then for all kinds of arrays, can you make zero-length arrays?</p>
-<p>LB: You will be able to create empty ArrayBuffers. TypedArrays may have additional checks.</p>
+<p>LBR: You will be able to create empty ArrayBuffers. TypedArrays may have additional checks.</p>
 <p>MM: any objections?</p>
 <p>MS: Were you concerned about compat, DE?</p>
 <p>DE: No, I was concerned about compat for other proposals. I think this will probably work.</p>
