@@ -23,10 +23,10 @@ Istvan Sebastian (IS), Ben Newman (BN), Caridy Patiño (CP), Keith Miller (KM), 
 <a href="#discussion-of-atomics-pr"><h3 id="discussion-of-atomics-pr">Discussion of Atomics PR</h3></a><ul>
 <li><a href="https://github.com/tc39/proposal-bigint/pull/80">PR</a></li>
 </ul>
-<p>WH: Why torn?
-DE: Writes into a Float64Array are also torn</p>
-<p>SYG: Why do we want only 64 bit operations?
-WH: What important architectures do not support atomic 64-bit operations? Even 32-bit architectures often support 64-bit atomic operations.</p>
+<p>WH: Why torn?</p>
+<p>DE: Writes into a Float64Array are also torn</p>
+<p>SYG: Why do we want only 64 bit operations?</p>
+<p>WH: What important architectures do not support atomic 64-bit operations? Even 32-bit architectures often support 64-bit atomic operations.</p>
 <p>MS: 32 bit operations are being deprecated but they're still around. MIPS is still being used.</p>
 <p>DE: Yeah, set top boxes use MIPS</p>
 <p>RW: Router chipsets, eg. MediaTek, etc</p>
@@ -254,7 +254,7 @@ WH: What important architectures do not support atomic 64-bit operations? Even 3
 <p>JHD: Sticky provides an iterator for one match.</p>
 <p>MS: You want an iterator that gives you all the captures - a &quot;sticky plus&quot; could do that.</p>
 <p>JHD: Like an alternative flag?</p>
-<p>MS: Yes. I share Waldemar's concern. What flag should I give the regexp? What do I get back? And so forth. Having something like this with all caputres for every single match is good.</p>
+<p>MS: Yes. I share Waldemar's concern. What flag should I give the regexp? What do I get back? And so forth. Having something like this with all captures for every single match is good.</p>
 <p>JHD: I feel more hesistant about adding a flag over naming this <code>scan</code>.</p>
 <p>MS: It gives you more power though - adding a flag allows you to use that semantic with all regexp operations. This is probably the main usecase but would a flag be more valuable?</p>
 <p>JHD: By having matchAll we have a consistent interface; while a flag requires introspection in userland code.</p>
@@ -490,7 +490,7 @@ WH: What important architectures do not support atomic 64-bit operations? Even 3
 <p>JRL: We can detemine at compile time if a field is static or not and what is allowed to happen</p>
 <p>JHD: Static methods being able to access private fields is fine.</p>
 <p>DE: Walking the prototype chain for private fields is a significant departure from what we have now.</p>
-<p>TST: To clarify its highly useful to have pirvate static fields in normal static methods. But its a foot-gun, this is a targeted way to illiminate the footgun</p>
+<p>TST: To clarify its highly useful to have private static fields in normal static methods. But its a foot-gun, this is a targeted way to illiminate the footgun</p>
 <p>DE: I was skeptical on this it seems ad-hoc. How does the community feel about banning <code>this.#</code> if the field is static?</p>
 <p>YK: More-or-less not walking prototype chain means not dynamically finding fields. For instance properties the instance got the fields. When you subclass there is a static instantiation process.</p>
 <p>DE: So you re-evaluate initialisers?</p>
